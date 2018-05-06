@@ -1,0 +1,44 @@
+﻿@using EmployeeVacationCalendar.Web.Globalization
+@using EmployeeVacationCalendar.Web.ViewModels
+@model LoginViewModel
+@{
+	ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+<hr />
+@using (Html.BeginForm("Login", "Account", new { role = "form", ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+	<div class="login modal-dialog">
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-user"></span>
+			</span>
+			@Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = Resources.UserName })
+		</div>
+		<div class="input-group">
+			@Html.ValidationMessageFor(x => x.Username, null, new { @class = "error-label" })
+		</div>
+		<div class="input-group">
+			<span class="loginIcon input-group-addon">
+				<span class="glyphicon glyphicon-lock"></span>
+			</span>
+			@Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = Resources.Password })
+		</div>
+		<div class="input-group">
+			@Html.ValidationMessageFor(x => x.Password, null, new { @class = "error-label" })
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				@Html.ValidationMessage(nameof(ErrorCode.UsernameNotFound), new { @class = "error-label" })
+				@Html.ValidationMessage(nameof(ErrorCode.InvalidPassword), new { @class = "error-label" })
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<input type="submit" value=@Resources.Login class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+}

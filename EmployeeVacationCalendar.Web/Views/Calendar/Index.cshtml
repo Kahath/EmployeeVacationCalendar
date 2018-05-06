@@ -1,0 +1,48 @@
+﻿@using EmployeeVacationCalendar.Web.Globalization
+@{
+	ViewData["Title"] = "Index";
+}
+<div id="vacationDialog" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				@*<h2></h2>*@
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<div class="dialogForm vacationDialogForm">
+						<span>Date From: </span>
+						<input type="text" class="js-date-from form-control" />
+						<span>Date To: </span>
+						<input type="text" class="js-date-to form-control" />
+						<span>@Resources.VacationType: </span>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								@Resources.VacationType
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#" class="dropdown-item" value="1">@Resources.Vacation</a></li>
+								<li><a href="#" class="dropdown-item" value="2">@Resources.Sick</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="dialogForm employeeDialogForm">
+						<span>First Name: </span>
+						<input type="text" class="employeeFirstName form-control" />
+						<span>Last Name: </span>
+						<input type="text" class="employeeLastName form-control" />
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input type="button" class="btn btn-default" name="Submit" value="@Resources.Submit" />
+				<input type="button" class="btn btn-default" name="Delete" value="@Resources.Delete" />
+			</div>
+		</div>
+	</div>
+</div>
+<hr />
+<div class="calendar"></div>

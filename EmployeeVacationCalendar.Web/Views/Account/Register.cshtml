@@ -1,0 +1,70 @@
+﻿@using EmployeeVacationCalendar.Web.ViewModels
+@using EmployeeVacationCalendar.Web.Globalization
+@model RegisterViewModel
+@{
+	ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+<hr />
+@using (Html.BeginForm("Register", "Account", new { role = "form" }, FormMethod.Post))
+{
+	<div class="login modal-dialog">
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-user"></span>
+			</span>
+			@Html.TextBoxFor(x => x.Username, new { @class = "form-control", placeholder = Resources.UserName })
+		</div>
+		<div class="input-group">
+			@Html.ValidationMessageFor(x => x.Username, null, new { @class = "error-label" })
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-lock"></span>
+			</span>
+			@Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = Resources.Password })
+		</div>
+		<div class="input-group">
+			@Html.ValidationMessageFor(x => x.Password, null, new { @class = "error-label" })
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-lock"></span>
+			</span>
+			@Html.PasswordFor(x => x.PasswordConfirm, new { @class = "form-control", placeholder = Resources.PasswordConfirm })
+		</div>
+		<div class="input-group">
+			@Html.ValidationMessageFor(x => x.PasswordConfirm, null, new { @class = "error-label" })
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-user"></span>
+			</span>
+			@Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", placeholder = Resources.FirstName })
+		</div>
+		<div class="input-group">
+			@Html.ValidationMessageFor(x => x.FirstName, null, new { @class = "error-label" })
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon-user"></span>
+			</span>
+			@Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = Resources.LastName })
+		</div>
+		<div class="input-group">
+			@Html.ValidationMessageFor(x => x.LastName, null, new { @class = "error-label" })
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				@Html.ValidationMessage(nameof(ErrorCode.UsernameAlreadyExists), new { @class = "error-label" })
+				@Html.ValidationMessage(nameof(ErrorCode.GenericError), new { @class = "error-label" })
+			</div>
+			</div>
+		<div class="form-group">
+			<div class="input-group">
+				<input type="submit" value=@Resources.Register class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+}

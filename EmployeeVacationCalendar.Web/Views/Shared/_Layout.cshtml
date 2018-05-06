@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Employee vacation calendar</title>
+
+	<environment include="Development">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="~/lib/pickadate/lib/themes/default.css" />
+		<link rel="stylesheet" href="~/lib/pickadate/lib/themes/default.date.css" />
+		<link rel="stylesheet" href="~/lib/Font-Awesome/web-fonts-with-css/css/fontawesome.css" />
+		<link rel="stylesheet" href="~/lib/Font-Awesome/web-fonts-with-css/css/fa-solid.css" />
+		<link rel="stylesheet" href="~/css/site.css" />
+	</environment>
+	<environment exclude="Development">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="~/lib/pickadate/lib/compressed/themes/default.css" />
+		<link rel="stylesheet" href="~/lib/pickadate/lib/compressed/themes/default.date.css" />
+		<link rel="stylesheet" href="~/lib/Font-Awesome/web-fonts-with-css/css/fontawesome.min.css" />
+		<link rel="stylesheet" href="~/lib/Font-Awesome/web-fonts-with-css/css/fa-solid.min.css" />
+
+		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+	</environment>
+
+	@*	<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>*@
+
+</head>
+<body>
+	@*<div class="hamburger"></div>*@
+	<div class="header">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a asp-area="" asp-controller="Calendar" asp-action="Index" class="navbar-brand">Employee calendar</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a asp-area="" asp-controller="Calendar" asp-action="Index">Calendar</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					@if (User.Identity.IsAuthenticated)
+					{
+						
+						bool isAdmin = User.IsInRole(EmployeeVacationCalendar.Domain.Model.Roles.Admin);
+						if (isAdmin)
+						{
+							<li><a asp-controller="Account" asp-action="Register">Add employee</a></li>
+						}
+
+						<li><a>@User.Identity.Name</a></li>
+						<li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+					}
+					else
+					{
+						<li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+					}
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div class="content container body-content">
+		@RenderBody()
+	</div>
+	<environment include="Development">
+		<script src="~/lib/jquery/dist/jquery.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+		<script src="~/lib/moment/moment.js"></script>
+
+		<script src="~/lib/pickadate/lib/picker.js"></script>
+		<script src="~/lib/pickadate/lib/picker.date.js"></script>
+
+		<script src="~/lib/react/react.development.js"></script>
+		<script src="~/lib/react/react-dom.development.js"></script>
+
+		<script src="~/js/Calendar/EmployeesCalendar.jsx"></script>
+		<script src="~/js/Calendar/CalendarEmployee.jsx"></script>
+		<script src="~/js/Calendar/CalendarMonth.jsx"></script>
+		<script src="~/js/Calendar/CalendarWeek.jsx"></script>
+		<script src="~/js/Calendar/CalendarDay.jsx"></script>
+		<script src="~/js/Calendar/CalendarInit.jsx"></script>
+
+		<script src="~/js/site.js" asp-append-version="true"></script>
+	</environment>
+	<environment exclude="Development">
+		<script src="~/lib/jquery/dist/jquery.min.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<script src="~/lib/moment/min/moment.min.js"></script>
+		<script src="~/lib/pickadate/lib/compressed/picker.js"></script>
+		<script src="~/lib/pickadate/lib/compressed/picker.date.js"></script>
+
+		<script src="~/lib/react/react.production.min.js"></script>
+		<script src="~/lib/react/react-dom.production.min.js"></script>
+
+		<script src="~/js/Calendar/EmployeesCalendar.jsx"></script>
+		<script src="~/js/Calendar/CalendarEmployee.jsx"></script>
+		<script src="~/js/Calendar/CalendarMonth.jsx"></script>
+		<script src="~/js/Calendar/CalendarWeek.jsx"></script>
+		<script src="~/js/Calendar/CalendarDay.jsx"></script>
+		<script src="~/js/Calendar/CalendarInit.jsx"></script>
+
+		<script src="~/js/site.min.js" asp-append-version="true"></script>
+	</environment>
+	@RenderSection("Scripts", required: false)
+</body>
+</html>
