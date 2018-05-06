@@ -1,6 +1,6 @@
 # EmployeeVacationCalendar
 
-Simple interactible employee vacation calendar web aplication built using ASP.NET Core MVC with simplified domain driven-design. Due to simplicity of the project some logic is done in controllers instead of service layer. Libraries are built using .NET Standard SDK. Web project backend is mainly used for views routing. Frontend calendar is build using React. Bower is used for web package manager. Layout design is made by using CSS Grid Layout.
+Simple interactable employee vacation calendar web application built using ASP.NET Core MVC with simplified domain driven-design. Due to simplicity of the project some logic is done in controllers instead of service layer. Libraries are built using .NET Standard SDK. Web project backend is mainly used for views routing. Frontend calendar is build using React. Bower is used for web package manager. Layout design is made with CSS Grid.
 
 </br>
 
